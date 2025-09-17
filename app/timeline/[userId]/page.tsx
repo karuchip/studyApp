@@ -75,6 +75,7 @@ export default function Home() {
 
   return (
     <>
+      <p className="co-pageTitle">タイムライン</p>
       <SelectMenu userId={loginUser?.id} />
       <div className="timelineContainer">
         <ul>
@@ -86,7 +87,6 @@ export default function Home() {
             return (
               <div key={r.id} className="timelineContent">
                 <div className="timelineUserDate">
-                  <p className="timelineUser">{r.user.name}の記録</p>
                   <p className="timelineDate">{formattedDate}</p>
                 </div>
                 <div className="timelineMaterialTime">
@@ -110,6 +110,7 @@ export default function Home() {
                 </div>
 
                 <div className="timelineRecordDelete">
+                  <p className="timelineUser">{r.user.name}の記録</p>
                   <button onClick={()=>handleDeleteRecord(r.id, r.user.id)} className="co-deleteBtn">
                     <DeleteIcon sx={{fontSize:"20px"}}/>
                   </button>

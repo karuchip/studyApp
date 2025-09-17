@@ -87,6 +87,8 @@ const handleAddMaterial = async (
 
       <div className="materialIndexContainer">
 
+        <p className="co-pageTitle">教材</p>
+
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example" centered>

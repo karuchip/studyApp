@@ -82,7 +82,10 @@ export default function AddRecordPage({ params }: { params: Promise<{ userId: st
 
       {/* 記録追加 */}
       <div className="addContainer">
-        <form onSubmit={handleSubmit}>
+        <p className="co-pageTitle">記録する</p>
+
+
+        <form onSubmit={handleSubmit} className="addRecordContent">
 
           {/* 教材ID入力*/}
           <div className="addRecordItems">

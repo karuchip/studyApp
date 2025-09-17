@@ -18,9 +18,11 @@ export default function GetMyRecord() {
   }
 
   return (
-    <main className="p-4">
+    <main className="p-4 myPageContainer">
       {/* メニュー */}
       <SelectMenu userId={loginUser.id} />
+
+      <p className="co-pageTitle">私の記録</p>
 
       {/* 今日の記録 */}
       <TodayRecordCard/>

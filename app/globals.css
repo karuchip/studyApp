@@ -42,6 +42,16 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 .co-deleteBtn:hover {
   color: #3c3c3c
 }
+.co-pageTitle {
+  width: 100%;
+  background-color: hsl(8, 100%, 82%);
+  position: fixed;
+  top:0;
+  left: 0;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 10px;
+}
 
 
 /* ログイン */
@@ -51,7 +61,6 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 30px 15px;
-  font-family: sans-serif;
 }
 .loginContainer h1{
   font-size: 18px;
@@ -93,41 +102,41 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 /* タイムライン */
 .timelineContainer {
   width: 320px;
-  margin: 30px auto 100px auto;
+  margin: 60px auto 100px auto;
 }
 .timelineContent {
-  border: 1px solid #e4e3e3;
+  border: 1px solid #a9a9a9;
   border-radius: 10px;
   margin: 20px 0px;
   padding: 20px;
 }
 .timelineUserDate {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
 }
 .timelineUser {
-  font-size: 12px;
+  font-size: 14px;
   width: fit-content;
-  color:#83aeff;
   border-radius: 50%;
 }
 .timelineDate {
-  font-size: 12px;
+  font-size: 14px;
   width: fit-content;
 }
 .timelineMaterialTime {
-  margin: 15px 0;
+  margin: 25px 0;
 }
 .timelineMaterial {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   width: fit-content;
 }
 .timelineTime {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   width: fit-content;
   margin: 0 0 0 auto;
+  border-bottom: 1px solid #000;
 }
 .timelineFeelingComment {
   display: flex;
@@ -143,7 +152,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   border-radius: 10px;
   width: fit-content;
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 .timelineCommentRound1 {
@@ -160,13 +169,16 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 }
 .timelineRecordDelete {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 /* 記録を追加 */
 .addContainer {
   width: 320px;
   margin: 0 auto 100px auto;
+}
+.addRecordContent {
+  margin-top: 60px;
 }
 .addRecordItems {
   margin: 30px 0;
@@ -176,7 +188,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   padding: 10px 20px 20px 20px;
 }
 .addRecordItems h3 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color:#333;
   width: fit-content;
@@ -187,7 +199,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 }
 .addRecordCategory h4{
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
 }
 .addRecordTime {
   width: 40px;
@@ -240,7 +252,6 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 30px 15px;
-  font-family: sans-serif;
 }
 .todayRecordHeader {
   display: flex;
@@ -366,11 +377,10 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 /* 教材一覧 */
 .materialIndexContainer {
   width: 300px;
-  margin: 30px auto;
+  margin: 60px auto;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 16px;
-  font-family: sans-serif;
 }
 .materialIndexCategory {
   margin: 15px 0 30px 0;
@@ -414,7 +424,9 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   border-bottom: 1px solid #83aeff;
   color: #83aeff;
   width: fit-content;
-  margin: 20px auto 40px 50px;
+  margin: 30px auto 40px 40px;
+  font-weight: 700;
+  font-size: 14px;
 }
 .addMaterialBtn {
   border: none;
@@ -430,3 +442,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   background-color: lightpink;
 }
 
+/* 私の記録 */
+.myPageContainer {
+  margin-top: 60px;
+}
