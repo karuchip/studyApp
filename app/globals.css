@@ -1,26 +1,432 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+li {
+  list-style: none;
+}
+p,a,h1,h2,h3,h4,h5,li,ul {
+  margin: 0;
+  padding: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* メニュー */
+.menuContainer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: hsl(8, 100%, 82%);
+  height: 60px;
+}
+.menuContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.menuLi{
+  width: 100px;
+  width: fit-content;
+  margin-top: 15px;
+}
+.menuLi a{
+  width: fit-content;
+  color: #fff;
+}
+.menuLi a:hover {
+  color: #e6e6e6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 共通 */
+.co-deleteBtn {
+  background-color: #fff;
+  border: none;
+  color: #717171
+}
+.co-deleteBtn:hover {
+  color: #3c3c3c
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+/* ログイン */
+.loginContainer {
+  width: 320px;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px 15px;
+  font-family: sans-serif;
 }
+.loginContainer h1{
+  font-size: 18px;
+  width: fit-content;
+  margin: 0 auto 30px auto;
+}
+.loginContent {
+  flex-wrap: wrap;
+  display: inline-flex;
+  gap: 20px;
+  justify-content: center;
+}
+.loginNum {
+  font-size: 20px;
+  background-color: #ffb3fe;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.loginNum:hover {
+  background-color: #ff52fc;
+}
+.loginBtn {
+  border: none;
+  background-color: rgb(254, 99, 123);
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px 20px;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 50px auto 0px 110px;
+}
+.loginBtn:hover {
+  background-color: lightpink;
+}
+
+/* タイムライン */
+.timelineContainer {
+  width: 320px;
+  margin: 30px auto 100px auto;
+}
+.timelineContent {
+  border: 1px solid #e4e3e3;
+  border-radius: 10px;
+  margin: 20px 0px;
+  padding: 20px;
+}
+.timelineUserDate {
+  display: flex;
+  justify-content: space-between;
+}
+.timelineUser {
+  font-size: 12px;
+  width: fit-content;
+  color:#83aeff;
+  border-radius: 50%;
+}
+.timelineDate {
+  font-size: 12px;
+  width: fit-content;
+}
+.timelineMaterialTime {
+  margin: 15px 0;
+}
+.timelineMaterial {
+  font-size: 14px;
+  font-weight: 700;
+  width: fit-content;
+}
+.timelineTime {
+  font-weight: 700;
+  font-size: 16px;
+  width: fit-content;
+  margin: 0 0 0 auto;
+}
+.timelineFeelingComment {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.feelingIcon {
+  width: fit-content;
+}
+.timelineComment {
+  border: 0.5px solid #83aeff34;
+  background-color: #83aeff34;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.timelineCommentRound1 {
+  width: 5px;
+  height:  5px;
+  border-radius: 50%;
+  background-color: #83aeff34;
+}
+.timelineCommentRound2 {
+  width: 10px;
+  height:  10px;
+  border-radius: 50%;
+  background-color: #83aeff34;
+}
+.timelineRecordDelete {
+  display: flex;
+  justify-content: right;
+}
+
+/* 記録を追加 */
+.addContainer {
+  width: 320px;
+  margin: 0 auto 100px auto;
+}
+.addRecordItems {
+  margin: 30px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  /* box-shadow: 4px 8px 8px rgba(0,0,0,0.25); */
+  padding: 10px 20px 20px 20px;
+}
+.addRecordItems h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color:#333;
+  width: fit-content;
+  margin: 0 auto 10px auto;
+}
+.addRecordCategory {
+  margin-bottom: 16px;
+}
+.addRecordCategory h4{
+  font-weight: 500;
+  font-size: 12px;
+}
+.addRecordTime {
+  width: 40px;
+  padding: 10px 20px;
+  font-size: 20px;
+  margin: 10px 5px 0 10px;
+  border: 0.5px solid #333;
+  border-radius: 10px;
+}
+.addRecordFeelingContent {
+  width: fit-content;margin: 0 auto;
+  height: 60px;
+  align-items: end;
+}
+.addRecordComment {
+  width: 255px;
+  height:80px;
+  padding: 10px;
+  margin-top:10px;
+  font-size: 14px;
+  border: 0.5px solid #333;
+  border-radius: 10px;
+}
+.addRecordButton {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+.addRecordButton button{
+  width: fit-content;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 40px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: rgb(254, 99, 123);
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+}
+.addRecordButton button:active{
+  background-color: lightpink;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+}
+
+/* 今日の記録 /components/myrecord/today.tsx */
+.todayRecordContainer {
+  width: 320px;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px 15px;
+  font-family: sans-serif;
+}
+.todayRecordHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.todayRecordHeader h3 {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  font-weight: 500;
+}
+.todayRecordHeader p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #222;
+}
+.todayRecordProgressBar {
+  display: flex;
+  height: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #000;
+  text-align: center;
+  line-height: 30px;
+}
+.todayRecordLegend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+.todayRecordLegend .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.todayRecordDate {
+  text-align: right;
+  font-size: 12px;
+  color: #666;
+}
+
+
+/* 過去1週間の記録 components/myrecord/lastOneWeek.tsx */
+.weekRecordContainer {
+  width: 320px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px 15px;
+  max-width: 600px;
+  margin: 30px auto;
+}
+.weekRecordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.weekRecordHeader h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+.weekRecordHeader p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #222;
+}
+.weekRecordDays {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.weekRecordDay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.weekRecordDate {
+  font-size: 10px;
+  margin-bottom: 4px;
+  color: #555;
+}
+.weekRecordStatus {
+  font-size: 22px;
+  margin: 4px 0;
+}
+.weekRecordTime {
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 総学習時間 */
+.totalStudyHour {
+  width: 320px;
+  margin: 10px auto;
+  border: 1px solid #ddd;
+  padding: 30px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.totalStudyHour h2 {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+.totalStudyHour p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #222;
+}
+
+
+/* 教材一覧 */
+.materialIndexContainer {
+  width: 300px;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: sans-serif;
+}
+.materialIndexCategory {
+  margin: 15px 0 30px 0;
+}
+.materialIndexNameDelete {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+
+}
+.materialIndexNameDelete p {
+  width: fit-content;
+}
+.materialIndexNameDelete button {
+  width: fit-content;
+}
+
+
+/* 教材追加 */
+.addMaterialContent h2 {
+  font-size: 18px;
+}
+.addMaterialContent p{
+  font-weight: 700;
+  margin: 40px 0 5px 0;
+}
+.addMaterialContent input {
+  width: 240px;
+  padding: 10px;
+  font-size: 16px;
+}
+.addMaterialContent select {
+  font-size: 16px;
+  width: 265px;
+  padding: 10px;
+}
+
+.addMaterialCategoryChange {
+  border: none;
+  background-color: #fff;
+  border-bottom: 1px solid #83aeff;
+  color: #83aeff;
+  width: fit-content;
+  margin: 20px auto 40px 50px;
+}
+.addMaterialBtn {
+  border: none;
+  background-color: rgb(254, 99, 123);
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px 20px;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 20px 0 0 80px;
+}
+.addMaterialBtn:hover {
+  background-color: lightpink;
+}
+
