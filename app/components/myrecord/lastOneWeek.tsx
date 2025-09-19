@@ -1,9 +1,9 @@
 "use client"
 
-import { getMyTodayRecord } from "@/src/getMyTodayRecord";
 import { useEffect, useState } from "react";
 import { aggregateLast7Days } from "@/src/aggregateLast7Days";
 import { useAuthContext } from "@/context/AuthContext";
+import { getMyAllRecord } from "@/src/getMyAllRecord";
 
 // 日ごとの集計結果の型
 type DaySummary = {
@@ -20,7 +20,7 @@ export default function LastOneWeekRecordCard() {
   useEffect(() => {
     const getMyLastWeek = async() => {
       if(!loginUser?.id) return null;
-      const result = await getMyTodayRecord(loginUser.id);
+      const result = await getMyAllRecord(loginUser.id);
       const days = await aggregateLast7Days(result);
       setDays(days);
 
