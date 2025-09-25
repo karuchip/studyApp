@@ -404,7 +404,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 3px 10px;
+  padding: 2px;
 }
 .weekRecordArrow:disabled {
   background-color: #d9d9d9;

@@ -5,7 +5,8 @@ import { useAuthContext } from "@/context/AuthContext";
 import { getMyAllRecord } from "@/src/getMyAllRecord";
 import { Record } from "@/lib/type/record";
 import { format, subDays, addDays } from "date-fns";
-import { ja } from "date-fns/locale";
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 // 日ごとの集計結果の型
 type DaySummary = {
@@ -122,13 +123,13 @@ export default function LastOneWeekRecordCard() {
         </div>
 
         <div className="weekRecordArrowContainer">
-          <button className="weekRecordArrow" onClick={() => setWeekOffset(weekOffset - 1)}>⬅</button>
+          <button className="weekRecordArrow" onClick={() => setWeekOffset(weekOffset - 1)}><NavigateBeforeIcon sx={{fontSize:"26px"}}/></button>
           <button
             className="weekRecordArrow"
             onClick={() => setWeekOffset(weekOffset + 1)}
             disabled={weekOffset >= 0} // 未来には進めない
           >
-            ➡
+            <NavigateNextIcon sx={{fontSize:"26px"}}/>
           </button>
         </div>
       </div>
