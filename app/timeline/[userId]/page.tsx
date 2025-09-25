@@ -1,6 +1,6 @@
 "use client";
 
-import SelectMenu from "@/app/components/menu";
+import SelectMenu from "@/app/components/tool/menu";
 import { supabase } from "../../../lib/supabase"
 import dayjs from "dayjs";
 import FeelingIcons from "@/app/components/feelingIcons";
@@ -8,6 +8,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import React, { useEffect, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteRecord } from "@/src/deleteRecord";
+import Loading from "@/app/components/tool/loading";
 
 type Record = {
   id: number;
@@ -26,24 +27,29 @@ export default function Home() {
   const { loginUser } = useAuthContext();
   const [records, setRecords] = useState<Record[]>([]);
   const [error, setError] = useState<unknown>(null);
+  const [loading, setLoading] = useState(false);
 
     // タイムラインレコード取得
     const fetchRecords = async () => {
-    const { data, error } = await supabase
-      .from("record")
-      .select(`
-        *,
-        material:material_id (name),
-        "user":user_id (name, id)
-      `)
-      .order("created_at", { ascending: false });
+      setLoading(true);
 
-    if (error) {
-      setError(error);
-    } else {
-      setRecords(data || []);
-    }
-  };
+      const { data, error } = await supabase
+        .from("record")
+        .select(`
+          *,
+          material:material_id (name),
+          "user":user_id (name, id)
+        `)
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        setError(error);
+        setLoading(false);
+      } else {
+        setRecords(data || []);
+        setLoading(false);
+      }
+    };
 
   // 画面開いた時にレコード取得
   useEffect(() => {
@@ -52,10 +58,15 @@ export default function Home() {
 
 
   // レコード削除
-  const handleDeleteRecord = async(recordId:number, userId:string) => {
+  const handleDeleteRecord = async(recordId:number, userId:string, material:string, hour:number, min:number, date:string) => {
     if(loginUser && loginUser.id === userId) {
+
+      const ok = window.confirm(`${date}の記録: ${material}(${hour}時間${min}分)を削除してよろしいですか？`);
+      if(!ok) return;
+
       await deleteRecord(recordId);
       fetchRecords();
+
       alert("記録を削除しました。")
     }
   }
@@ -67,6 +78,10 @@ export default function Home() {
 
   if(!loginUser) {
     return <p>ログインしてください</p>
+  }
+
+  if(loading) {
+    return<Loading/>
   }
 
   if(records.length === 0) {
@@ -111,7 +126,7 @@ export default function Home() {
 
                 <div className="timelineRecordDelete">
                   <p className="timelineUser">{r.user.name}の記録</p>
-                  <button onClick={()=>handleDeleteRecord(r.id, r.user.id)} className="co-deleteBtn">
+                  <button onClick={()=>handleDeleteRecord(r.id, r.user.id, r.material.name, studyHour, studyMin, formattedDate)} className="co-deleteBtn">
                     <DeleteIcon sx={{fontSize:"20px"}}/>
                   </button>
                 </div>

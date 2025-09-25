@@ -11,6 +11,7 @@ import { Category } from "@/lib/type/category";
 import { getCategories } from "@/src/getCategory";
 import { Box, Tab } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import Loading from "./tool/loading";
 
 
 type Props = {
@@ -45,6 +46,9 @@ useEffect(() => {
 
 // 教材削除
 const handleDeleteMaterial = async (id: number, name: string) => {
+  const ok = window.confirm(`${name}を削除してよろしいですか？`);
+  if(!ok) return;
+
   const result = await softDeleteMaterial(id);
   if (result) {
     alert(`${name}を削除しました。`);
@@ -79,7 +83,7 @@ const handleAddMaterial = async (
 
   // 画面表示
   if(materials.length === 0) {
-    return <p>読み込み中</p>
+    return <Loading/>
   }
 
   return (

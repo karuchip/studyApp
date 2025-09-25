@@ -1,14 +1,12 @@
 "use client";
 
-import SelectMenu from "@/app/components/menu";
+import SelectMenu from "@/app/components/tool/menu";
 // import { supabase } from "../../../../lib/supabase"
-import MyMaterials from "@/app/components/myMaterial";
 import AllRecordCard from "@/app/components/myrecord/all";
 import LastOneWeekRecordCard from "@/app/components/myrecord/lastOneWeek";
 // import { useEffect, useState } from "react";
 import TodayRecordCard from "@/app/components/myrecord/today";
 import { useAuthContext } from "@/context/AuthContext";
-
 
 export default function GetMyRecord() {
   const { loginUser } = useAuthContext();

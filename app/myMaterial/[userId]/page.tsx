@@ -1,6 +1,6 @@
 "use client"
 
-import SelectMenu from "@/app/components/menu";
+import SelectMenu from "@/app/components/tool/menu";
 import MyMaterials from "@/app/components/myMaterial";
 import { useAuthContext } from "@/context/AuthContext";
 

@@ -4,17 +4,20 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { useAuthContext } from "@/context/AuthContext"
+import Loading from "@/app/components/tool/loading";
 
 export default function Login() {
   const [input, setInput] = useState<string>("")
   const router = useRouter()
   const { setLoginUser, setSession } = useAuthContext()
+  const [loading, setLoading] = useState(false)
 
   const handleClick = (num: number) => {
     setInput((prev) => prev + num.toString())
   }
 
   const handleLogin = async () => {
+    setLoading(true);
     const { data, error } = await supabase.auth.signInWithPassword({
       email: "study@study.com",
       password: input,
@@ -23,10 +26,9 @@ export default function Login() {
     if (error || !data.user) {
       alert("ログイン失敗: " + error?.message)
       setInput("");
+      setLoading(false);
       return
     }
-    console.log("ログイン情報取得");
-    console.log(data);
 
     // ✅ DB上のユーザー情報を取得
     const { data: dbUser, error: dbError } = await supabase
@@ -38,14 +40,20 @@ export default function Login() {
     if (dbError || !dbUser) {
       alert("DB 上のユーザー取得に失敗しました")
       console.error(dbError)
+      setLoading(false);
       return
     }
 
     alert("ログイン成功！")
     setLoginUser(dbUser)
     setSession(data.session)
+    setLoading(false);
 
     router.push(`/timeline/${dbUser.id}`)
+  }
+
+  if(loading) {
+    return<Loading/>
   }
 
   return (

@@ -29,3 +29,5 @@ export function aggregateLast7Days(records: Record[]): DaySummary[] {
 
   return last7Days;
 }
+
+

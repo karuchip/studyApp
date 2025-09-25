@@ -6,13 +6,54 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   padding: 0;
 }
 
+/* ローディング */
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.loadingContent {
+  width: fit-content;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px 50px;
+  border-radius: 20px;
+  border: 1px solid #83aeff;
+  margin: 100px auto;
+}
+.loadingContent img {
+  margin: 10px 0;
+  animation: pandaAnime 3s linear infinite;
+}
+@keyframes pandaAnime {
+  0% {
+    transform:rotate(0)
+  }
+  25% {
+    transform:rotate(20deg)
+  }
+  50% {
+    transform:rotate(0)
+  }
+  75% {
+    transform:rotate(-20deg)
+  }
+  100% {
+    transform:rotate(0)
+  }
+}
+
 /* メニュー */
 .menuContainer {
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
-  background-color: hsl(8, 100%, 82%);
+  /* background-color: hsl(8, 100%, 82%); */
+  background-color: #b5dfff;
   height: 60px;
 }
 .menuContent {
@@ -44,7 +85,8 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 }
 .co-pageTitle {
   width: 100%;
-  background-color: hsl(8, 100%, 82%);
+  /* background-color: hsl(8, 100%, 82%); */
+  background-color: #b5dfff;
   position: fixed;
   top:0;
   left: 0;
@@ -340,24 +382,38 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   font-size: 10px;
   margin-bottom: 4px;
   color: #555;
+  text-align: center;
 }
 .weekRecordStatus {
   font-size: 22px;
   margin: 4px 0;
 }
 .weekRecordTime {
-  font-size: 12px;
+  font-size: 11px;
   color: #333;
   font-weight: bold;
 }
+.weekRecordArrowContainer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+.weekRecordArrow {
+  width: fit-content;
+  /* background-color: #ffb3fe;
+  color: #fff;
+  border: none; */
+}
 
 /* 総学習時間 */
-.totalStudyHour {
+.totalStudyHourContainer {
   width: 320px;
   margin: 10px auto 80px auto;
   border: 1px solid #ddd;
   padding: 30px 15px;
   border-radius: 8px;
+}
+.totalStudyHour {
   display: flex;
   justify-content: space-between;
 }
@@ -371,6 +427,10 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   font-weight: 500;
   font-size: 20px;
   color: #222;
+}
+.totalNinjinContainer {
+  margin-top: 10px;
+  display: flex;
 }
 
 
