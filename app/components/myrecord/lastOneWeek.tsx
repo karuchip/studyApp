@@ -43,7 +43,9 @@ function aggregateOneWeek(records: Record[], weekOffset: number): DaySummary[] {
     const totalMinutes = dayRecords.reduce((sum, r) => sum + r.time, 0);
 
     // "09/25(木)" のようなラベルを作る
-    const dateLabel = `${format(date, "MM/dd")}\n(${format(date, "E", { locale: ja })})`;
+    // Use format with locale by importing 'format' from 'date-fns/locale/ja' if needed, or use toLocaleDateString
+    const dayOfWeekJa = date.toLocaleDateString("ja-JP", { weekday: "short" });
+    const dateLabel = `${format(date, "MM/dd")}\n(${dayOfWeekJa})`;
 
     return {
       // dateLabel: format(date, "MM/dd"),
