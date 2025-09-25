@@ -47,9 +47,8 @@ export default function Login() {
     alert("ログイン成功！")
     setLoginUser(dbUser)
     setSession(data.session)
+    await router.push(`/timeline/${dbUser.id}`)
     setLoading(false);
-
-    router.push(`/timeline/${dbUser.id}`)
   }
 
   if(loading) {

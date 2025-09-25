@@ -412,6 +412,9 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 .weekRecordArrow:hover {
   background-color: #f380f1;
 }
+.weekRecordArrow:disabled:hover {
+  background-color: #d9d9d9;
+}
 
 /* 総学習時間 */
 .totalStudyHourContainer {
@@ -439,6 +442,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 .totalNinjinContainer {
   margin-top: 10px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 
