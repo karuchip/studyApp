@@ -301,14 +301,14 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   margin-bottom: 30px;
 }
 .todayRecordHeader h3 {
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   font-weight: bold;
   font-weight: 500;
 }
 .todayRecordHeader p {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
   color: #222;
 }
 .todayRecordProgressBar {
@@ -358,19 +358,19 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 }
 .weekRecordHeader h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   font-weight: 500;
 }
 .weekRecordHeader p {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
   color: #222;
 }
 .weekRecordDays {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
 }
 .weekRecordDay {
   display: flex;
@@ -379,7 +379,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
   flex: 1;
 }
 .weekRecordDate {
-  font-size: 10px;
+  font-size: 11px;
   margin-bottom: 4px;
   color: #555;
   text-align: center;
@@ -400,9 +400,17 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 }
 .weekRecordArrow {
   width: fit-content;
-  /* background-color: #ffb3fe;
+  background-color: #ffb3fe;
   color: #fff;
-  border: none; */
+  border: none;
+  border-radius: 5px;
+  padding: 3px 10px;
+}
+.weekRecordArrow:disabled {
+  background-color: #d9d9d9;
+}
+.weekRecordArrow:hover {
+  background-color: #f380f1;
 }
 
 /* 総学習時間 */
@@ -419,13 +427,13 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 }
 .totalStudyHour h2 {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   font-weight: 500;
 }
 .totalStudyHour p {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
   color: #222;
 }
 .totalNinjinContainer {
