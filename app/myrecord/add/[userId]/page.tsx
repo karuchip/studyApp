@@ -72,11 +72,13 @@ export default function AddRecordPage({ params }: { params: Promise<{ userId: st
       },
     ]);
 
+
     if (error) {
       console.error(error);
       alert("登録に失敗しました: " + error.message);
       setLoading(false);
     } else {
+      console.log(data);
       alert("記録を登録しました！");
       router.push(`/myrecord/get/${userId}`); // 一覧画面に戻すイメージ
       setLoading(false);

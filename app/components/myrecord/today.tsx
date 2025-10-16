@@ -36,7 +36,7 @@ export default function TodayRecordCard() {
     // 今日の日付を取得
     const todayDate = formatDateWithDay();
     setToday(todayDate);
-  }, []);
+  }, [loginUser?.id]);
 
   // 集計
   const totalMinutes = records.reduce((sum, r) => sum + r.time, 0);

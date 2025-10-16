@@ -7,7 +7,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import Loading from "../tool/loading";
 
 export default function AllRecordCard() {
-  const [records, setRecords] = useState<Record[]>([]);
+  // const [records, setRecords] = useState<Record[]>([]);
   const [totalHour, setTotalHour] = useState<number>(0);
   const [totalMin, setTotalMin] = useState<number>(0);
   const {loginUser} = useAuthContext();
@@ -24,7 +24,7 @@ export default function AllRecordCard() {
       try {
         if(!loginUser?.id) return null;
         const result = await getMyAllRecord(loginUser.id);
-        setRecords(result);
+        // setRecords(result);
 
         // 総学習時間を計算
         const total = result.reduce(
@@ -46,7 +46,7 @@ export default function AllRecordCard() {
       }
     };
     getMyToday();
-  }, []);
+  }, [loginUser?.id]);
 
   if(loading) {
     return<Loading/>

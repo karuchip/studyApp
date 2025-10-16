@@ -1,7 +1,7 @@
 "use client"
 import { Material } from "@/lib/type/material";
 import { getMaterials } from "@/src/getMaterials";
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { softDeleteMaterial } from "@/src/softDeleteMaterials";
 import { addCategory } from "@/src/addCategory";
@@ -30,19 +30,19 @@ const MyMaterials = ({userId}:Props) => {
 
 
 // 教材とカテゴリを取得する関数をまとめて作る
-const fetchData = async () => {
+const fetchData = useCallback(async () => {
   if (userId === null) return;
   const materialsData = await getMaterials(userId);
   setMaterials(materialsData);
 
   const categoriesData = await getCategories(userId);
   setCategories(categoriesData);
-};
+},[userId]);
 
-// useEffect では初回読み込み
+// useEffect で初回読み込み
 useEffect(() => {
   fetchData();
-}, [userId]);
+}, [fetchData]);
 
 // 教材削除
 const handleDeleteMaterial = async (id: number, name: string) => {

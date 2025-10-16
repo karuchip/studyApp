@@ -7,6 +7,7 @@ import LastOneWeekRecordCard from "@/app/components/myrecord/lastOneWeek";
 // import { useEffect, useState } from "react";
 import TodayRecordCard from "@/app/components/myrecord/today";
 import { useAuthContext } from "@/context/AuthContext";
+import Link from "next/link";
 
 export default function GetMyRecord() {
   const { loginUser } = useAuthContext();
@@ -27,6 +28,13 @@ export default function GetMyRecord() {
 
       {/* 過去1週間の記録 */}
       <LastOneWeekRecordCard/>
+
+      {/* 過去1ヶ月の記録 */}
+      <Link href={`/myrecord/monthlyRecord/${loginUser.id}`}>
+        <div>
+          <p>月の記録</p>
+        </div>
+      </Link>
 
       {/* 総学習時間 */}
       <AllRecordCard />
