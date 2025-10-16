@@ -31,7 +31,16 @@ export default function GetMyRecord() {
 
       {/* 過去1ヶ月の記録 */}
       <Link href={`/myrecord/monthlyRecord/${loginUser.id}`}>
-        <div>
+
+        <div
+          style={{
+            width:"310px",
+            margin: "10px auto 20px auto",
+            padding: "20px",
+            border: "1px solid #fbc8c8ff",
+            borderRadius: "5px"
+          }}
+        >
           <p>月の記録</p>
         </div>
       </Link>
