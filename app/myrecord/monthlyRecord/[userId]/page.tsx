@@ -1,99 +1,128 @@
 "use client"
-// import { useState, useEffect } from "react";
-// import { useAuthContext } from "@/context/AuthContext";
-// import { getMyAllRecord } from "@/src/getMyAllRecord";
-// import { Record } from "@/lib/type/record";
-// import { format } from "date-fns";
-// import { ja } from "date-fns/locale";
-
+import { useState, useEffect } from "react";
+import { useAuthContext } from "@/context/AuthContext";
+import { getMyAllRecord } from "@/src/getMyAllRecord";
+import { Record } from "@/lib/type/record";
+import { format, addDays, startOfMonth, endOfMonth } from "date-fns";
+import {StudyCalendar} from "@/app/components/myrecord/studyCalender";
+import Loading from "@/app/components/tool/loading";
+import SelectMenu from "@/app/components/tool/menu";
 
 // 日ごとの集計結果の型
-// type DaySummary = {
-//   dateLabel: string;     // "09/01" みたいな表示用
-//   totalMinutes: number;  // 合計学習時間（分）
-// };
+type DaySummary = {
+  month: number;
+  date: number;
+  weekName: string;
+  totalMinutes: number;  // 合計学習時間（分）
+};
+
+
+type MonthlySummaries = DaySummary[][];
 
 //月毎にまとめる関数
-// function groupMonthlySummaries(records: Record[]) {
-//   if (records.length === 0) return [];
+export function groupMonthlySummaries(records: Record[]): MonthlySummaries {
+  if (records.length === 0) return [];
 
-//   // 日付順にソート
-//   const sorted = [...records].sort(
-//     (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-//   );
+  // 日付順にソート
+  const sorted = [...records].sort(
+    (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+  );
 
-//   const monthlyGroups: { dateLabel: string; totalMinutes: number }[][] = [];
-//   let currentMonthKey = "";
-//   let currentGroup: { dateLabel: string; totalMinutes: number }[] = [];
+  const grouped: MonthlySummaries = [];
 
-//   // ユニークな日付一覧を作る
-//   const uniqueDates = Array.from(
-//     new Set(sorted.map((r) => format(new Date(r.created_at), "yyyy-MM-dd")))
-//   );
+  // 含まれる全ての「年月」を抽出
+  const uniqueMonths = Array.from(
+    new Set(
+      sorted.map((r) => {
+        const d = new Date(r.created_at);
+        return `${d.getFullYear()}-${d.getMonth() + 1}`;
+      })
+    )
+  );
 
-//   for (const dateStr of uniqueDates) {
-//     const date = new Date(dateStr);
-//     const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`;
+  for (const monthKey of uniqueMonths) {
+    const [year, month] = monthKey.split("-").map(Number);
 
-//     // 月が変わったら新しいグループを作る
-//     if (monthKey !== currentMonthKey) {
-//       if (currentGroup.length > 0) monthlyGroups.push(currentGroup);
-//       currentGroup = [];
-//       currentMonthKey = monthKey;
-//     }
+    const start = startOfMonth(new Date(year, month - 1));
+    const end = endOfMonth(new Date(year, month - 1));
 
-//     // その日の合計時間
-//     const dayRecords = records.filter(
-//       (r) => format(new Date(r.created_at), "yyyy-MM-dd") === dateStr
-//     );
-//     const totalMinutes = dayRecords.reduce((sum, r) => sum + r.time, 0);
+    const days: DaySummary[] = [];
 
-//     // 日付ラベル作成 (例: "10/01(水)")
-//     const dayOfWeekJa = date.toLocaleDateString("ja-JP", { weekday: "short" });
-//     const dateLabel = `${format(date, "MM/dd")}\n(${dayOfWeekJa})`;
+    for (let d = start; d <= end; d = addDays(d, 1)) {
+      const key = format(d, "yyyy-MM-dd");
 
-//     currentGroup.push({ dateLabel, totalMinutes });
-//   }
+      // その日の記録を抽出
+      const dayRecords = records.filter(
+        (r) => format(new Date(r.created_at), "yyyy-MM-dd") === key
+      );
 
-//   // 最後のグループを追加
-//   if (currentGroup.length > 0) monthlyGroups.push(currentGroup);
+      // 合計時間
+      const totalMinutes = dayRecords.reduce((sum, r) => sum + r.time, 0);
 
-//   return monthlyGroups;
-// }
+      // 各要素を分割して保持
+      const weekName = d.toLocaleDateString("ja-JP", { weekday: "short" });
+      const date = d.getDate();
+
+      days.push({
+        month,
+        date,
+        weekName,
+        totalMinutes,
+      });
+    }
+
+    grouped.push(days);
+  }
+
+  return grouped;
+}
 
 const MonthlyReport = () => {
-  // const [monthlyReport, setMonthlyReport] = useState<DaySummary[][]>([]);
-  //   const [totalLabel, setTotalLabel] = useState<string>("");
-  //   const { loginUser } = useAuthContext();
 
-  //   useEffect(() => {
-  //     const fetchWeekRecords = async () => {
-  //       if (!loginUser?.id) return;
-  //       const result = await getMyAllRecord(loginUser.id);
-  //       console.log(result);
+    const { loginUser } = useAuthContext();
+    const [ groupMonthly, setGroupMonthly] = useState<DaySummary[][]>([]);
+    const [loading, setLoading] = useState(false);
 
-  //       const monthlyReport = groupMonthlySummaries(result);
-  //       setMonthlyReport(monthlyReport);
-  //     }
+    useEffect(() => {
 
+      const fetchWeekRecords = async () => {
+        if (!loginUser?.id) return;
+        setLoading(true);
 
-      //   // 今月の合計時間
-      //   const totalMinutes = weekDays.reduce((sum, d) => sum + d.totalMinutes, 0);
-      //   const hours = Math.floor(totalMinutes / 60);
-      //   const minutes = totalMinutes % 60;
-      //   const total =
-      //     (hours > 0 ? `${hours}時間` : "") +
-      //     (minutes > 0 ? `${minutes}分` : "");
-      //   setTotalLabel(total);
-      // };
-    //   fetchWeekRecords();
-    // }, []);
+        // データ取得
+        const result = await getMyAllRecord(loginUser.id);
+        // データ整形
+        const monthResult = groupMonthlySummaries(result);
+        setGroupMonthly(monthResult);
 
-  return(
+        setLoading(false);
+      }
+
+      fetchWeekRecords();
+    }, [loginUser?.id]);
+
+if(loading) {
+  return<Loading/>
+}
+
+  return (
     <>
-      <h1>月間記録</h1>
+    {loginUser?.id && (
+      <SelectMenu userId={loginUser.id}/>
+    )}
+
+      <p className="co-pageTitle">Monthly Records</p>
+
+      <div className="min-h-screen bg-[#FFFFFF] p-4 pb-15">
+
+        {groupMonthly.map((monthDays, index) => (
+          <div key={index} className="mb-6">
+            <StudyCalendar days={monthDays} />
+          </div>
+        ))}
+      </div>
     </>
-  )
+  );
 }
 
 export default MonthlyReport

@@ -90,7 +90,7 @@ export default function Home() {
 
   return (
     <>
-      <p className="co-pageTitle">タイムライン</p>
+      <p className="co-pageTitle">Feed</p>
       <SelectMenu userId={loginUser?.id} />
       <div className="timelineContainer">
         <ul>
