@@ -292,7 +292,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 
 /* 今日の記録 /components/myrecord/today.tsx */
 .todayRecordContainer {
-  width: 320px;
+  width: 340px;
   margin: 30px auto;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -346,7 +346,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 
 /* 過去1週間の記録 components/myrecord/lastOneWeek.tsx */
 .weekRecordContainer {
-  width: 320px;
+  width: 340px;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 30px 15px;
@@ -373,7 +373,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 .weekRecordDays {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 9px;
 }
 .weekRecordDay {
   display: flex;
@@ -421,7 +421,7 @@ p,a,h1,h2,h3,h4,h5,li,ul {
 
 /* 総学習時間 */
 .totalStudyHourContainer {
-  width: 320px;
+  width: 340px;
   margin: 10px auto 80px auto;
   border: 1px solid #ddd;
   padding: 30px 15px;

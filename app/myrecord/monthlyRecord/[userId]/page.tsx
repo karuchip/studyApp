@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import { getMyAllRecord } from "@/src/getMyAllRecord";
 import { Record } from "@/lib/type/record";
@@ -101,6 +101,18 @@ const MonthlyReport = () => {
       fetchWeekRecords();
     }, [loginUser?.id]);
 
+
+    // 画面を開いた時に一番下にスクロールされている
+    const bottomRef = useRef<HTMLDivElement>(null);
+    // groupMonthly が更新されたらスクロール
+    useEffect(() => {
+      if (groupMonthly.length > 0) {
+        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+      }
+    }, [groupMonthly]); // ← groupMonthlyの変更を監視
+
+
+
 if(loading) {
   return<Loading/>
 }
@@ -121,6 +133,8 @@ if(loading) {
           </div>
         ))}
       </div>
+
+      <div ref={bottomRef}></div>
     </>
   );
 }
