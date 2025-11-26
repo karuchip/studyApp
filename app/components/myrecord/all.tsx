@@ -36,7 +36,7 @@ export default function AllRecordCard() {
 
         // 人参カウント
         setNinjinCount(Math.floor(Math.floor(total / 60) / 5 ));
-        setUsagiSize(Math.floor(Math.floor(total / 60) / 5 ) + 12)
+        setUsagiSize(Math.floor(Math.floor(total / 60) /5 ) + 12)
 
         setLoading(false);
 

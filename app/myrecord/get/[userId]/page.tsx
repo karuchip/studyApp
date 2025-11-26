@@ -7,6 +7,7 @@ import LastOneWeekRecordCard from "@/app/components/myrecord/lastOneWeek";
 // import { useEffect, useState } from "react";
 import TodayRecordCard from "@/app/components/myrecord/today";
 import { useAuthContext } from "@/context/AuthContext";
+import NewWords from "@/app/components/myrecord/newWords";
 
 export default function GetMyRecord() {
   const { loginUser } = useAuthContext();
@@ -21,6 +22,9 @@ export default function GetMyRecord() {
       <SelectMenu userId={loginUser.id} />
 
       <p className="co-pageTitle">My Records</p>
+
+      {/* 今日の単語 */}
+      <NewWords/>
 
       {/* 今日の記録 */}
       <TodayRecordCard/>
